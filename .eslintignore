@@ -1,0 +1,5 @@
+rollup.config.js
+dist/
+lib/
+babel.config.js
+*lint*

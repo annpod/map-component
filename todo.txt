@@ -1,0 +1,82 @@
+Tap map background to dismiss currently selected item (+ fire deselection callback)
+	
+Implement nearest facilities to a selected item (+ disable other map items when in this mode)
+	
+Zoom Levels – Initial zoom level (needs to see whole map)
+	
+Zoom Levels – Change default zoom of selected item (too zoomed in, needs more context)
+	
+Speed up animations (i.e. if an item is selected, speed up the animation to make appear more fluid)
+	
+Add inertia to scroll view (to make appear more fluid) – as per Apple/Google maps
+
+
+  const playRouteWithPanning = () => {
+    dispatch({ type: 'SET_IS_ANIMATED', payload: true })
+    dispatch({ type: 'SET_ROUTE_STATUS', payload: 'running' })
+
+    const pathLength = pathRef?.current?.getTotalLength() || 0
+
+    const pathLengthPercent = 100 / pathLength
+
+    const PanToTimer = (index: number, time: number) =>
+      new Promise((resolve) => {
+        const element = state.routeCoordinates[index]
+        const [x, y] = element
+        panTo({ x, y }, null, true, time - 40)
+
+        setTimeout(() => {
+          resolve(null)
+        }, time + 40)
+      })
+
+    const followAndPanRoute = async () => {
+      PanToTimer(0, 0) // pan to start
+      for (let index = 0; index < state.routeCoordinates.length; index++) {
+        const difference =
+          getDifferenceBetweenCoords(state.routeCoordinates[index], state.routeCoordinates[index - 1]) *
+          pathLengthPercent *
+          ((state.velocity * pathLength) / 100)
+
+        await PanToTimer(index, Math.abs(difference))
+      }
+    }
+
+    followAndPanRoute()
+  }
+
+  export const TEST_ROUTE_1 = [
+  [100, 100],
+  [100, 200],
+  [400, 200],
+  [400, 500],
+  [100, 500],
+  [100, 600],
+  [866, 600],
+  [866, 150],
+  [200, 150],
+]
+
+export const TEST_ROUTE_2 = [
+  [800, 200],
+  [300, 200],
+  [300, 752],
+  [100, 200],
+  [100, 800],
+  [600, 800],
+]
+
+export const TEST_ROUTE_3 = [
+  [200, 300],
+  [200, 900],
+]
+
+export const TEST_ROUTE_4 = [
+  [300, 200],
+  [900, 200],
+]
+
+
+
+1. Move selectArea to parent
+2. Fix onCLickoutsdieofMap

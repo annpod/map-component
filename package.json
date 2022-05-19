@@ -1,0 +1,83 @@
+{
+  "name": "@connectlabs/map-web-core",
+  "version": "0.1.0",
+  "private": false,
+  "homepage": ".",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src/typings"
+  ],
+  "scripts": {
+    "build": "npm run clean && cross-env NODE_ENV=production  rollup -c",
+    "tsc": "tsc",
+    "tsc:dev": "tsc --watch --preserveWatchOutput",
+    "eject": "react-scripts eject",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "start": "npm run clean && cross-env NODE_ENV=development rollup -c -w",
+    "test": "react-scripts test",
+    "clean": "shx rm -rf dist/ lib/",
+    "prepare": "husky install",
+    "precommit": "lint-staged"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all",
+      "ie 11"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version",
+      "ie 11"
+    ]
+  },
+  "peerDependencies": {
+    "axios": "^0.25.0",
+    "core-js": "^3.21.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "regenerator-runtime": "^0.13.9",
+    "styled-components": "^5.2.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.5",
+    "@babel/preset-env": "^7.16.11",
+    "@rollup/plugin-babel": "^5.3.1",
+    "@rollup/plugin-eslint": "^8.0.1",
+    "@rollup/plugin-node-resolve": "^11.2.0",
+    "@svgr/rollup": "^5.5.0",
+    "@types/axios": "^0.14.0",
+    "@types/react": "^17.0.19",
+    "@types/react-dom": "^17.0.9",
+    "@types/react-select": "^5.0.1",
+    "@types/styled-components": "^5.1.13",
+    "@typescript-eslint/eslint-plugin": "^5.10.0",
+    "@typescript-eslint/parser": "^5.10.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.7.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.7",
+    "prettier": "2.6.1",
+    "react-scripts": "^4.0.2",
+    "rollup": "^2.69.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "shx": "^0.3.4",
+    "tslib": "^2.3.1",
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "eslint-plugin-flowtype": "^8.0.3",
+    "react-spring": "^9.4.4"
+  }
+}

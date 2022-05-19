@@ -1,0 +1,12 @@
+{
+  "extends": ["../.eslintrc.json"],
+  "overrides": [
+    {
+      "files": ["**/*.ts", ".**/*.tsx"],
+      "parserOptions": {
+        "ecmaVersion": 8,
+        "project": ["./tsconfig.json"]
+      }
+    }
+  ]
+}
